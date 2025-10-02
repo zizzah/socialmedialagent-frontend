@@ -88,7 +88,7 @@ export default function PostGenerator() {
     }
   })
 
-  const { appendMessage, setMessages } = useCopilotChat()
+  const { appendMessage } = useCopilotChat()
 
 
   // Handle clicking outside dropdown to close it
@@ -246,7 +246,6 @@ export default function PostGenerator() {
                       onClick={() => {
                         if (selectedAgent.id != agent.id) {
                             updateLayout({ agent: agent.id })
-                            setMessages([])
                             router.push(`/stack-analyzer`)
                         }
                         setIsDropdownOpen(false)
