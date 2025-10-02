@@ -87,7 +87,7 @@ export default function StackAnalyzer() {
             analysis : ""
         }
     })
-    const { appendMessage, setMessages } = useCopilotChat()
+    const { appendMessage } = useCopilotChat()
 
     // useEffect(() => {
     //     console.log(state.show_cards, "running")
@@ -186,7 +186,7 @@ export default function StackAnalyzer() {
                                             onClick={() => {
                                                 if (selectedAgent.id != agent.id) {
                                                     updateLayout({ agent: agent.id })
-                                                    setMessages([])
+                                                    // setMessages([]) // Removed because setMessages does not exist
                                                     setState({
                                                         tool_logs: [],
                                                         show_cards : false,
