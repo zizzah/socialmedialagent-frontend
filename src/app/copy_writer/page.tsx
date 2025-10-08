@@ -24,6 +24,8 @@ import {
   Copy,
   Download,
   Target,
+  Menu,
+  X as CloseIcon,
 } from "lucide-react"
 import { useCoAgent, useCoAgentStateRender, useCopilotAction, useCopilotChat } from "@copilotkit/react-core"
 import { ToolLogs } from "@/components/ui/tool-logs"
@@ -94,15 +96,15 @@ const CopyPreview = ({ copy }: { copy: CopyInterface }) => {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 lg:space-y-6">
       {/* Primary Copy */}
-      <Card className="p-6 bg-white/80 backdrop-blur-sm border-gray-200/50 shadow-lg rounded-2xl">
+      <Card className="p-4 lg:p-6 bg-white/80 backdrop-blur-sm border-gray-200/50 shadow-lg rounded-2xl">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-gradient-to-r from-orange-500 to-pink-600 rounded-lg flex items-center justify-center">
-              <Target className="w-5 h-5 text-white" />
+            <div className="w-6 h-6 lg:w-8 lg:h-8 bg-gradient-to-r from-orange-500 to-pink-600 rounded-lg flex items-center justify-center">
+              <Target className="w-4 h-4 lg:w-5 lg:h-5 text-white" />
             </div>
-            <h3 className="text-lg font-bold text-gray-900">Primary Copy</h3>
+            <h3 className="text-base lg:text-lg font-bold text-gray-900">Primary Copy</h3>
           </div>
           <Button
             size="sm"
@@ -111,97 +113,97 @@ const CopyPreview = ({ copy }: { copy: CopyInterface }) => {
               `${copy.primary.headlines.join('\n\n')}\n\n${copy.primary.body}\n\n${copy.primary.cta}`,
               'primary'
             )}
-            className="rounded-lg"
+            className="rounded-lg text-xs lg:text-sm"
           >
-            <Copy className="w-4 h-4 mr-2" />
+            <Copy className="w-3 h-3 lg:w-4 lg:h-4 mr-1 lg:mr-2" />
             {copiedSection === 'primary' ? 'Copied!' : 'Copy'}
           </Button>
         </div>
 
         {/* Headlines */}
-        <div className="mb-6">
-          <h4 className="text-sm font-semibold text-gray-700 mb-3 flex items-center gap-2">
-            <Sparkles className="w-4 h-4 text-orange-500" />
+        <div className="mb-4 lg:mb-6">
+          <h4 className="text-xs lg:text-sm font-semibold text-gray-700 mb-2 lg:mb-3 flex items-center gap-2">
+            <Sparkles className="w-3 h-3 lg:w-4 lg:h-4 text-orange-500" />
             Headline Options
           </h4>
           <div className="space-y-2">
             {copy.primary.headlines.map((headline, idx) => (
               <div
                 key={idx}
-                className="p-3 bg-gradient-to-r from-orange-50 to-pink-50 rounded-lg border border-orange-200/50"
+                className="p-2 lg:p-3 bg-gradient-to-r from-orange-50 to-pink-50 rounded-lg border border-orange-200/50"
               >
-                <p className="font-semibold text-gray-900">{headline}</p>
+                <p className="text-sm lg:text-base font-semibold text-gray-900">{headline}</p>
               </div>
             ))}
           </div>
         </div>
 
         {/* Body Copy */}
-        <div className="mb-6">
-          <h4 className="text-sm font-semibold text-gray-700 mb-3 flex items-center gap-2">
-            <FileText className="w-4 h-4 text-orange-500" />
+        <div className="mb-4 lg:mb-6">
+          <h4 className="text-xs lg:text-sm font-semibold text-gray-700 mb-2 lg:mb-3 flex items-center gap-2">
+            <FileText className="w-3 h-3 lg:w-4 lg:h-4 text-orange-500" />
             Body Copy
           </h4>
-          <div className="p-4 bg-white rounded-lg border border-gray-200 whitespace-pre-wrap">
-            <p className="text-gray-800 leading-relaxed">{copy.primary.body}</p>
+          <div className="p-3 lg:p-4 bg-white rounded-lg border border-gray-200 whitespace-pre-wrap">
+            <p className="text-sm lg:text-base text-gray-800 leading-relaxed">{copy.primary.body}</p>
           </div>
         </div>
 
         {/* CTA */}
-        <div className="mb-6">
-          <h4 className="text-sm font-semibold text-gray-700 mb-3 flex items-center gap-2">
-            <Zap className="w-4 h-4 text-orange-500" />
+        <div className="mb-4 lg:mb-6">
+          <h4 className="text-xs lg:text-sm font-semibold text-gray-700 mb-2 lg:mb-3 flex items-center gap-2">
+            <Zap className="w-3 h-3 lg:w-4 lg:h-4 text-orange-500" />
             Call-to-Action
           </h4>
-          <div className="p-4 bg-gradient-to-r from-orange-500 to-pink-600 rounded-lg">
-            <p className="text-white font-semibold text-center">{copy.primary.cta}</p>
+          <div className="p-3 lg:p-4 bg-gradient-to-r from-orange-500 to-pink-600 rounded-lg">
+            <p className="text-sm lg:text-base text-white font-semibold text-center">{copy.primary.cta}</p>
           </div>
         </div>
 
         {/* Rationale */}
         {copy.primary.rationale && (
-          <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
-            <h4 className="text-sm font-semibold text-blue-900 mb-2">Strategic Rationale</h4>
-            <p className="text-sm text-blue-800">{copy.primary.rationale}</p>
+          <div className="p-3 lg:p-4 bg-blue-50 rounded-lg border border-blue-200">
+            <h4 className="text-xs lg:text-sm font-semibold text-blue-900 mb-2">Strategic Rationale</h4>
+            <p className="text-xs lg:text-sm text-blue-800">{copy.primary.rationale}</p>
           </div>
         )}
       </Card>
 
       {/* Variations */}
-      <div className="grid md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 lg:gap-4">
         {/* Emotional Variation */}
-        <Card className="p-6 bg-white/80 backdrop-blur-sm border-gray-200/50 shadow-lg rounded-2xl">
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg font-bold text-gray-900">Variation A - Emotional</h3>
+        <Card className="p-4 lg:p-6 bg-white/80 backdrop-blur-sm border-gray-200/50 shadow-lg rounded-2xl">
+          <div className="flex items-center justify-between mb-3 lg:mb-4">
+            <h3 className="text-sm lg:text-lg font-bold text-gray-900">Variation A - Emotional</h3>
             <Button
               size="sm"
               variant="outline"
               onClick={() => copyToClipboard(copy.variations.emotional, 'emotional')}
               className="rounded-lg"
             >
-              <Copy className="w-4 h-4" />
+              <Copy className="w-3 h-3 lg:w-4 lg:h-4" />
             </Button>
           </div>
-          <div className="p-4 bg-pink-50 rounded-lg border border-pink-200 whitespace-pre-wrap">
-            <p className="text-gray-800 text-sm leading-relaxed">{copy.variations.emotional}</p>
+          <div className="p-3 lg:p-4 bg-pink-50 rounded-lg border border-pink-200 whitespace-pre-wrap">
+            <p className="text-xs lg:text-sm text-gray-800 leading-relaxed">{copy.variations.emotional}</p>
           </div>
         </Card>
 
         {/* Logical Variation */}
-        <Card className="p-6 bg-white/80 backdrop-blur-sm border-gray-200/50 shadow-lg rounded-2xl">
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg font-bold text-gray-900">Variation B - Logical</h3>
+        <Card className="p-4 lg:p-6 bg-white/80 backdrop-blur-sm border-gray-200/50 shadow-lg rounded-2xl">
+          <div className="flex items-center justify-between mb-3 lg:mb-4">
+            <h3 className="text-sm lg:text-lg font-bold text-gray-900">Variation B - Logical</h3>
             <Button
               size="sm"
               variant="outline"
               onClick={() => copyToClipboard(copy.variations.logical, 'logical')}
               className="rounded-lg"
             >
-              <Copy className="w-4 h-4" />
+              <Copy className="w-3 h-3 lg:w-4 lg:h-4" />
             </Button>
           </div>
-          <div className="p-4 bg-blue-50 rounded-lg border border-blue-200 whitespace-pre-wrap">
-            <p className="text-gray-800 text-sm leading-relaxed">{copy.variations.logical}</p>
+          <div className="p-3 lg:p-4 bg-blue-50 rounded-lg border border-blue-200 whitespace-pre-wrap">
+            <p className="text-xs lg:text-sm text-gray-800 leading-relaxed">{copy.variations.logical}</p>
           </div>
         </Card>
       </div>
@@ -236,6 +238,7 @@ export default function CopywriterPage() {
   })
   const [isAgentActive, setIsAgentActive] = useState(false)
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   
   const { setState, running } = useCoAgent({
     name: "copywriter_agent",
@@ -339,9 +342,29 @@ export default function CopywriterPage() {
   })
 
   return (
-    <div className="flex flex-col lg:flex-row h-screen bg-gradient-to-br from-slate-50 via-orange-50 to-pink-50 overflow-hidden">
+    <div className="flex h-screen bg-gradient-to-br from-slate-50 via-orange-50 to-pink-50 overflow-hidden">
+      {/* Mobile Menu Button */}
+      <button
+        onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+        className="lg:hidden fixed top-4 left-4 z-50 w-10 h-10 bg-white/90 backdrop-blur-xl rounded-lg shadow-lg flex items-center justify-center border border-gray-200/50"
+      >
+        {isSidebarOpen ? <CloseIcon className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+      </button>
+
+      {/* Overlay for mobile */}
+      {isSidebarOpen && (
+        <div
+          className="lg:hidden fixed inset-0 bg-black/50 z-30"
+          onClick={() => setIsSidebarOpen(false)}
+        />
+      )}
+
       {/* Sidebar */}
-      <div className="flex flex-col w-full lg:w-80 bg-white/80 backdrop-blur-xl border-b lg:border-r lg:border-b-0 border-gray-200/50 shadow-xl">
+      <div className={cn(
+        "flex flex-col min-h-screen w-80 bg-white/80 backdrop-blur-xl border-r border-gray-200/50 shadow-xl transition-transform duration-300 ease-in-out",
+        "fixed lg:relative z-40 lg:z-0",
+        isSidebarOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
+      )}>
         {/* Header */}
         <div className="h-auto lg:h-40 p-4 border-b border-gray-100/50">
           <div className="flex items-center gap-3 mb-4">
@@ -373,7 +396,7 @@ export default function CopywriterPage() {
                   <div className={`w-6 h-6 bg-gradient-to-r ${selectedAgent.gradient} rounded-lg flex items-center justify-center shadow-sm`}>
                     <selectedAgent.icon className="w-4 h-4 text-white" />
                   </div>
-                  <span className="font-medium text-gray-900 text-xs lg:text-sm">{selectedAgent.name}</span>
+                  <span className="font-medium text-gray-900">{selectedAgent.name}</span>
                 </div>
                 <ChevronDown 
                   className={cn(
@@ -406,6 +429,7 @@ export default function CopywriterPage() {
                           }
                         }
                         setIsDropdownOpen(false)
+                        setIsSidebarOpen(false)
                       }}
                       className="w-full p-3 rounded-lg text-left transition-all duration-200 flex items-center gap-3 hover:bg-gradient-to-r hover:from-orange-50 hover:to-pink-50 hover:shadow-sm group"
                     >
@@ -414,7 +438,7 @@ export default function CopywriterPage() {
                       </div>
                       <div className="flex-1">
                         <div className="flex items-center gap-2">
-                          <span className="font-medium text-gray-900 text-xs lg:text-sm group-hover:text-orange-700 transition-colors duration-200">{agent.name}</span>
+                          <span className="font-medium text-gray-900 group-hover:text-orange-700 transition-colors duration-200">{agent.name}</span>
                           {selectedAgent.id === agent.id && (
                             <Check className="w-4 h-4 text-orange-600" />
                           )}
@@ -429,7 +453,7 @@ export default function CopywriterPage() {
           </div>
         </div>
 
-        <div className="flex-1 overflow-auto hidden lg:block">
+        <div className="flex-1 overflow-auto">
           {/* Chat Input */}
           <CopilotChat 
             className="h-full p-2" 
@@ -457,12 +481,13 @@ export default function CopywriterPage() {
                               content: input
                             }))
                             setInput("")
+                            setIsSidebarOpen(false)
                           }
                         }
                       }}
                       onChange={(e) => setInput(e.target.value)}
                       placeholder="Describe your copywriting project..."
-                      className="min-h-[80px] resize-none rounded-xl border-muted-foreground/20 p-3 text-sm"
+                      className="min-h-[80px] resize-none rounded-xl border-muted-foreground/20 p-3"
                     />
                     <Button 
                       disabled={inProgress || !input.trim()}
@@ -471,6 +496,7 @@ export default function CopywriterPage() {
                         if (input.trim()) {
                           onSend(input)
                           setInput("")
+                          setIsSidebarOpen(false)
                         }
                       }} 
                       className="self-end rounded-xl px-5 bg-gradient-to-r from-orange-500 via-pink-500 to-red-500 text-white hover:shadow-lg transition-shadow"
@@ -487,16 +513,16 @@ export default function CopywriterPage() {
       </div>
 
       {/* Main Content */}
-      <div className="flex-1 flex flex-col overflow-hidden">
+      <div className="flex-1 flex flex-col overflow-hidden w-full lg:w-auto">
         {/* Header */}
         <div className="bg-white/80 backdrop-blur-xl border-b border-gray-200/50 p-4 lg:p-6 shadow-sm flex-shrink-0">
-          <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
-            <div className="flex items-center gap-4">
-              <div className="w-8 h-8 bg-gradient-to-r from-orange-500 via-pink-500 to-red-500 rounded-lg flex items-center justify-center">
-                <Sparkles className="w-5 h-5 text-white" />
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3 lg:gap-4 ml-12 lg:ml-0">
+              <div className="w-6 h-6 lg:w-8 lg:h-8 bg-gradient-to-r from-orange-500 via-pink-500 to-red-500 rounded-lg flex items-center justify-center">
+                <Sparkles className="w-4 h-4 lg:w-5 lg:h-5 text-white" />
               </div>
               <div>
-                <h2 className="text-xl lg:text-2xl font-bold bg-gradient-to-r from-gray-900 via-orange-800 to-pink-800 bg-clip-text text-transparent">
+                <h2 className="text-lg lg:text-2xl font-bold bg-gradient-to-r from-gray-900 via-orange-800 to-pink-800 bg-clip-text text-transparent">
                   Copywriting Canvas
                 </h2>
                 <p className="text-xs lg:text-sm text-gray-600">Powered by Gemini AI & Market Research</p>
@@ -504,7 +530,7 @@ export default function CopywriterPage() {
             </div>
             <div className="flex items-center gap-3">
               {isAgentActive && (
-                <Badge className="bg-gradient-to-r from-green-500 to-emerald-500 text-white border-0 shadow-sm">
+                <Badge className="bg-gradient-to-r from-green-500 to-emerald-500 text-white border-0 shadow-sm text-xs lg:text-sm hidden sm:flex">
                   <div className="w-2 h-2 bg-white rounded-full mr-2 animate-pulse"></div>
                   Researching
                 </Badge>
@@ -518,32 +544,35 @@ export default function CopywriterPage() {
           {showCopy ? (
             <CopyPreview copy={generatedCopy} />
           ) : (
-            <div className="text-center py-8 lg:py-16">
-              <div className="relative mb-8">
-                <div className="w-16 lg:w-20 h-16 lg:h-20 bg-gradient-to-r from-orange-500 via-pink-500 to-red-500 rounded-2xl flex items-center justify-center mx-auto shadow-2xl">
-                  <PenTool className="w-8 lg:w-10 h-8 lg:h-10 text-white" />
+            <div className="text-center py-8 lg:py-16 px-4">
+              <div className="relative mb-6 lg:mb-8">
+                <div className="w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-r from-orange-500 via-pink-500 to-red-500 rounded-2xl flex items-center justify-center mx-auto shadow-2xl">
+                  <PenTool className="w-8 h-8 lg:w-10 lg:h-10 text-white" />
                 </div>
               </div>
-              <h3 className="text-xl lg:text-2xl font-bold bg-gradient-to-r from-gray-900 via-orange-800 to-pink-800 bg-clip-text text-transparent mb-3">
+              <h3 className="text-xl lg:text-2xl font-bold bg-gradient-to-r from-gray-900 via-orange-800 to-pink-800 bg-clip-text text-transparent mb-2 lg:mb-3">
                 Ready to Create Compelling Copy
               </h3>
-              <p className="text-sm lg:text-base text-gray-600 mb-8 max-w-md mx-auto leading-relaxed px-4">
+              <p className="text-sm lg:text-base text-gray-600 mb-6 lg:mb-8 max-w-md mx-auto leading-relaxed">
                 Harness AI-powered market research and proven persuasion frameworks to create high-converting copy.
               </p>
-              <div className="grid grid-cols-2 gap-3 lg:gap-4 max-w-lg mx-auto px-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 lg:gap-4 max-w-lg mx-auto">
                 {quickActions.map((action, index) => (
                   <Button
                     key={index}
                     variant="outline"
                     disabled={running}
                     className="h-auto p-4 lg:p-6 flex flex-col items-center gap-2 lg:gap-3 bg-white/50 backdrop-blur-sm border-gray-200/50 hover:bg-gradient-to-r hover:from-orange-50 hover:to-pink-50 rounded-xl transition-all duration-300 group"
-                    onClick={() => appendMessage(new TextMessage({
-                      role: Role.User,
-                      content: action.prompt
-                    }))}
+                    onClick={() => {
+                      appendMessage(new TextMessage({
+                        role: Role.User,
+                        content: action.prompt
+                      }))
+                      setIsSidebarOpen(false)
+                    }}
                   >
                     <action.icon
-                      className={`w-5 lg:w-6 h-5 lg:h-6 ${action.color} group-hover:scale-110 transition-transform duration-200`}
+                      className={`w-5 h-5 lg:w-6 lg:h-6 ${action.color} group-hover:scale-110 transition-transform duration-200`}
                     />
                     <span className="text-xs lg:text-sm font-medium text-center">{action.label}</span>
                   </Button>
@@ -551,43 +580,6 @@ export default function CopywriterPage() {
               </div>
             </div>
           )}
-        </div>
-
-        {/* Mobile Chat Input - Only visible on mobile */}
-        <div className="lg:hidden border-t border-gray-200/50 bg-white/80 backdrop-blur-xl p-4">
-          <CopilotChat 
-            className="h-auto" 
-            labels={{
-              initial: initialPrompt2
-            }}
-            Input={({ onSend, inProgress }) => {
-              const [input, setInput] = useState("")
-              
-              return (
-                <div className="flex gap-2">
-                  <Textarea
-                    value={input}
-                    onChange={(e) => setInput(e.target.value)}
-                    placeholder="Describe your copywriting project..."
-                    className="min-h-[60px] resize-none rounded-xl border-muted-foreground/20 p-3 text-sm flex-1"
-                  />
-                  <Button 
-                    disabled={inProgress || !input.trim()}
-                    onClick={(e) => {
-                      e.preventDefault()
-                      if (input.trim()) {
-                        onSend(input)
-                        setInput("")
-                      }
-                    }} 
-                    className="rounded-xl px-4 bg-gradient-to-r from-orange-500 via-pink-500 to-red-500 text-white"
-                  >
-                    <Send className="h-4 w-4" />
-                  </Button>
-                </div>
-              )
-            }}
-          />
         </div>
       </div>
     </div>
