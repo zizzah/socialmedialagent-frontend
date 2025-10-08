@@ -244,7 +244,7 @@ export default function CopywriterPage() {
     }
   })
 
-  const { appendMessage, setMessages } = useCopilotChat()
+  const { appendMessage } = useCopilotChat()
 
   // Handle clicking outside dropdown to close it
   useEffect(() => {
@@ -397,7 +397,6 @@ export default function CopywriterPage() {
                       onClick={() => {
                         if (selectedAgent.id !== agent.id) {
                           updateLayout({ agent: agent.id })
-                          setMessages([])
                           if (agent.id === "post_generation_agent") {
                             router.push(`/post-generator`)
                           } else if (agent.id === "stack_analysis_agent") {
