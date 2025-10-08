@@ -51,7 +51,17 @@ const agents = [
         icon: FileText,
         gradient: "from-green-500 to-teal-600",
         active: false,
-    }
+    },
+      {
+          id: "copywriter_agent",
+          name: "Expert Copywriter",
+          description: "Create high-converting copy with AI-powered market research",
+              icon: FileText,
+    
+          gradient: "from-orange-500 to-pink-600",
+          active: false,
+        }
+    
 ]
 
 const quickActions = [
@@ -186,13 +196,13 @@ export default function StackAnalyzer() {
                                             onClick={() => {
                                                 if (selectedAgent.id != agent.id) {
                                                     updateLayout({ agent: agent.id })
-                                                    // setMessages([]) // Removed because setMessages does not exist
-                                                    setState({
-                                                        tool_logs: [],
-                                                        show_cards : false,
-                                                        analysis : ""
-                                                    })
-                                                    router.push(`/post-generator`)
+                                                   if (agent.id === "post_generation_agent") {
+                            router.push(`/post-generator`)
+                          } else if (agent.id === "stack_analysis_agent") {
+                            router.push(`/stack-analyzer`)
+                          } else {
+                            router.push(`/copy_writer`)
+                          }
                                                 }
                                                 setIsDropdownOpen(false)
                                             }}
